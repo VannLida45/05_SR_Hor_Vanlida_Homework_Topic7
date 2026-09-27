@@ -71,13 +71,84 @@ Download the local model:
 
 Ensure Ollama is running.
 
-## 7. Run the Application
+## 7. Connect to your own database
+
+7. Database Setup
+
+This project uses PostgreSQL.
+
+Each user should connect the application to their own PostgreSQL database.
+
+7.1 Create a PostgreSQL Database
+
+Open PostgreSQL and create a database:
+
+CREATE DATABASE shopping_db;
+
+You can use any database name you prefer.
+
+7.2 Create the Products Table
+
+Connect to your database and run:
+
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    stock INTEGER NOT NULL DEFAULT 0
+);
+
+7.3 Insert Sample Products
+
+You can insert your own products.
+
+For example:
+
+INSERT INTO products (name, price, stock)
+VALUES
+    ('Dell Laptop', 850.00, 5),
+    ('iPhone 15', 750.00, 7),
+    ('HP Laptop', 700.00, 12);
+
+You can also add your own products:
+
+INSERT INTO products (name, price, stock)
+VALUES
+    ('MacBook Air', 999.00, 10),
+    ('Samsung Galaxy S25', 899.00, 8);
+
+To check your products:
+
+SELECT * FROM products;
+
+7.4 Configure Database Connection
+
+Create a .env file in the project root:
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=shopping_db
+DB_USER=your_postgres_username
+DB_PASSWORD=your_postgres_password
+
+Replace the values with your own PostgreSQL information.
+
+For example:
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=shopping_db
+DB_USER=postgres
+DB_PASSWORD=your_password
+
+
+## 8. Run the Application
 
     python main.py
 
 Choose customer or admin, then enter a request.
 
-## 8. Example Run
+## 9. Example Run
 
 Add actual terminal output from the following tests:
 
